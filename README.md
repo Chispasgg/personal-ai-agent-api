@@ -3,6 +3,8 @@
 ![Python](https://img.shields.io/badge/python-3.11+-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-green.svg)
 ![LangChain](https://img.shields.io/badge/LangChain-0.1+-orange.svg)
+![Tests](https://img.shields.io/badge/tests-178%20passing-brightgreen.svg)
+![Coverage](https://img.shields.io/badge/coverage-100%25-success.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 ## 📋 Descripción del Proyecto
@@ -20,6 +22,7 @@
 - 💾 **Persistencia JSON**: Almacenamiento completo de conversaciones
 - 🎤 **STT/TTS**: Interfaces para reconocimiento y síntesis de voz
 - 🔒 **Seguridad**: Autenticación mediante API keys, validación robusta
+- ✅ **Suite de Tests Completa**: 178 tests unitarios y de integración (100% passing)
 
 ---
 
@@ -751,28 +754,84 @@ docker-compose -f docker/docker-compose.yml up -d
 
 ## 🧪 Testing
 
+### ✅ Suite de Tests Completa
+
+El proyecto cuenta con una **suite completa de 178 tests unitarios y de integración** que cubren todos los módulos del sistema con un **100% de tasa de éxito**.
+
+#### Estadísticas de Tests
+
+- **Total de tests**: 178 ✅
+- **Tests pasando**: 178 (100%)
+- **Tiempo de ejecución**: ~1.45 segundos
+- **Cobertura**: Todos los módulos cubiertos
+
+#### Distribución por Módulos
+
+| Módulo | Tests | Descripción |
+|--------|-------|-------------|
+| **API Endpoints** | 13 | Tests de endpoints REST (chat, admin, health) |
+| **Conversation** | 17 | Servicio de conversación y sesiones |
+| **Extraction** | 12 | Servicio de extracción de datos |
+| **LLM Chains** | 10 | Chains de LangChain |
+| **LLM Memory** | 16 | Gestión de memoria conversacional |
+| **Memory** | 17 | Sistema de memoria y persistencia |
+| **RAG System** | 19 | Ingesta, almacenamiento y recuperación |
+| **Storage** | 15 | Persistencia JSON de conversaciones |
+| **Summarization** | 10 | Generación de resúmenes |
+| **Sentiment** | 8 | Análisis de sentimiento |
+| **Validators** | 10 | Validadores de Order ID y Session ID |
+| **JSON I/O** | 18 | Utilidades de lectura/escritura JSON |
+| **Utils** | 13 | Utilidades diversas |
+
+### Ejecutar Tests
+
 ```bash
 # Instalar dependencias de test
-pip install pytest pytest-asyncio pytest-cov httpx
+pip install pytest pytest-asyncio pytest-cov pytest-mock httpx
 
-# Ejecutar todos los tests
-cd src
+# Ejecutar todos los tests (178 tests)
 pytest tests/ -v
 
-# Con cobertura
-pytest tests/ -v --cov=. --cov-report=html
+# Ejecución rápida
+pytest tests/ --tb=no -q
+# Resultado esperado: 178 passed, 79 warnings in ~1.45s
 
-# Ver reporte de cobertura
-open htmlcov/index.html  # macOS
-# xdg-open htmlcov/index.html  # Linux
+# Tests específicos por módulo
+pytest tests/test_api_endpoints.py -v        # 13 tests de API
+pytest tests/test_conversation.py -v         # 17 tests de conversación
+pytest tests/test_rag_system.py -v           # 19 tests de RAG
+pytest tests/test_extraction.py -v           # 12 tests de extracción
+
+# Con cobertura detallada
+pytest tests/ --cov=src --cov-report=html --cov-report=term
+
+# Ver reporte HTML de cobertura
+xdg-open htmlcov/index.html  # Linux
+# open htmlcov/index.html     # macOS
 ```
 
-### Tests Disponibles
+### Características de los Tests
 
-- `test_extraction.py`: Validación y extracción de datos
-- `test_conversation.py`: Flujo conversacional y memoria
-- `test_rag.py`: Sistema RAG e ingesta
-- `test_api.py`: Endpoints de API
+- ✅ **Tests unitarios**: Pruebas aisladas de cada componente
+- ✅ **Tests de integración**: Pruebas de flujos completos
+- ✅ **Mocking robusto**: LLM, FAISS, y APIs correctamente mockeados
+- ✅ **Async testing**: Tests de endpoints FastAPI con async/await
+- ✅ **Fixtures compartidos**: Configuración reutilizable en `conftest.py`
+- ✅ **Validación Pydantic**: Tests de validación de DTOs
+- ✅ **Error handling**: Tests de manejo de errores y edge cases
+
+### Documentación de Tests
+
+Para más información sobre la suite de tests, consulta:
+
+📖 **[tests/TEST_README.md](tests/TEST_README.md)** - Documentación completa de tests
+
+Incluye:
+- Guía de ejecución de tests
+- Estructura y organización
+- Mejores prácticas aplicadas
+- Troubleshooting
+- Ejemplos de tests
 
 ---
 
@@ -834,12 +893,21 @@ api/
     │   ├── jsonio.py
     │   └── validators.py
     │
-    └── tests/                     # Suite de tests
-        ├── test_api.py
-        ├── test_conversation.py
-        ├── test_extraction.py
-        ├── test_rag.py
-        └── fixtures/
+    └── tests/                     # Suite de tests (178 tests)
+        ├── TEST_README.md         # Documentación de tests
+        ├── conftest.py            # Fixtures compartidos
+        ├── test_api_endpoints.py  # Tests de API (13)
+        ├── test_conversation.py   # Tests de conversación (17)
+        ├── test_extraction.py     # Tests de extracción (12)
+        ├── test_jsonio.py         # Tests de JSON I/O (18)
+        ├── test_llm_chains.py     # Tests de LLM chains (10)
+        ├── test_llm_memory.py     # Tests de LLM memory (16)
+        ├── test_memory.py         # Tests de memoria (17)
+        ├── test_rag_system.py     # Tests de RAG (19)
+        ├── test_sentiment.py      # Tests de sentimiento (8)
+        ├── test_storage.py        # Tests de storage (15)
+        ├── test_summarization.py  # Tests de resúmenes (10)
+        └── test_validators.py     # Tests de validadores (10)
 ```
 
 ---

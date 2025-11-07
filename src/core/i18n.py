@@ -104,51 +104,51 @@ async def get_language_data(text: str) -> str:
 #     return detect_language(text)
 
 
-def translate_to_english(text:str):
-    """
-    Traduce un texto al inglés detectando automáticamente el idioma de origen.
+# def translate_to_english(text:str):
+#     """
+#     Traduce un texto al inglés detectando automáticamente el idioma de origen.
 
-    Args:
-        texto (str): El texto a traducir (debe tener más de 4 caracteres)
+#     Args:
+#         texto (str): El texto a traducir (debe tener más de 4 caracteres)
 
-    Returns:
-        dict: Diccionario con la información de la traducción:
-            - texto_original: El texto original
-            - idioma_detectado: El idioma detectado
-            - texto_traducido: El texto traducido al inglés
-            - confianza: Confianza de la detección del idioma
+#     Returns:
+#         dict: Diccionario con la información de la traducción:
+#             - texto_original: El texto original
+#             - idioma_detectado: El idioma detectado
+#             - texto_traducido: El texto traducido al inglés
+#             - confianza: Confianza de la detección del idioma
 
-    Raises:
-        ValueError: Si el texto tiene 4 caracteres o menos
-    """
-    # Validar que el texto tenga más de 4 caracteres
-    if len(text) <= 4:
-        raise ValueError("El texto debe tener más de 4 caracteres")
+#     Raises:
+#         ValueError: Si el texto tiene 4 caracteres o menos
+#     """
+#     # Validar que el texto tenga más de 4 caracteres
+#     if len(text) <= 4:
+#         raise ValueError("El texto debe tener más de 4 caracteres")
 
-    # Crear instancia del traductor
-    traductor = Translator()
+#     # Crear instancia del traductor
+#     traductor = Translator()
 
-    # Detectar el idioma
-    deteccion = traductor.detect(text)
-    idioma_detectado = deteccion.lang
-    confianza = deteccion.confidence
+#     # Detectar el idioma
+#     deteccion = traductor.detect(text)
+#     idioma_detectado = deteccion.lang
+#     confianza = deteccion.confidence
 
-    # Si ya está en inglés, no traducir
-    if idioma_detectado == 'en':
-        return {
-            'texto_original': text,
-            'idioma_detectado': idioma_detectado,
-            'texto_traducido': text,
-            'confianza': confianza,
-            'mensaje': 'El texto ya está en inglés'
-        }
+#     # Si ya está en inglés, no traducir
+#     if idioma_detectado == 'en':
+#         return {
+#             'texto_original': text,
+#             'idioma_detectado': idioma_detectado,
+#             'texto_traducido': text,
+#             'confianza': confianza,
+#             'mensaje': 'El texto ya está en inglés'
+#         }
 
-    # Traducir al inglés
-    traduccion = traductor.translate(text, dest='en', src=idioma_detectado)
+#     # Traducir al inglés
+#     traduccion = traductor.translate(text, dest='en', src=idioma_detectado)
 
-    return {
-        'texto_original': text,
-        'idioma_detectado': idioma_detectado,
-        'texto_traducido': traduccion.text,
-        'confianza': confianza
-    }
+#     return {
+#         'texto_original': text,
+#         'idioma_detectado': idioma_detectado,
+#         'texto_traducido': traduccion.text,
+#         'confianza': confianza
+#     }

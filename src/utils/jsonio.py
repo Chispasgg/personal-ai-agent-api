@@ -81,13 +81,13 @@ def append_to_json_array(file_path: str | Path, item: Dict[str, Any]) -> None:
     write_json(path, data)
 
 
-def safe_read_json(file_path: str | Path, default: Any=None) -> Any:
+def safe_read_json(file_path: str | Path, default: Any = ...) -> Any:
     """
     Safely read JSON file with default fallback.
 
     Args:
         file_path: Path to JSON file
-        default: Default value if read fails
+        default: Default value if read fails (defaults to {})
 
     Returns:
         JSON data or default value
@@ -96,4 +96,4 @@ def safe_read_json(file_path: str | Path, default: Any=None) -> Any:
         return read_json(file_path)
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"Failed to read JSON file, path: {str(file_path)}, error: {str(e)}")
-        return default if default is not None else {}
+        return {} if default is ... else default
