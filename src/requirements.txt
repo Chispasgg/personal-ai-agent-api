@@ -1,0 +1,36 @@
+python-dotenv
+pydantic
+pydantic-settings
+fastapi
+uvicorn
+python-multipart
+langchain
+langchain-openai
+langchain-anthropic
+langchain-community
+googletrans
+textblob
+langcodes
+faiss-cpu
+gTTS
+
+# openai
+# anthropic
+# # sentence-transformers
+# tiktoken
+# numpy
+# pandas
+# # nltk
+# # langdetect
+# aiofiles
+# python-json-logger
+# pytest
+# pytest-asyncio
+# pytest-cov
+# httpx
+# black
+# ruff
+# mypy
+# # bandit
+# # pip-audit
+# ipython
