@@ -17,7 +17,8 @@ doc/
 # docker
 docker/
 
-# # tests
+# tests
+.benchmarks
 # tests/
 
 
